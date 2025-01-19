@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitação de Saque</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://via.placeholder.com/1920x1080') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .form-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border: 2px solid #00bfff;
+        }
+
+        .form-button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #00bfff;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .form-button:hover {
+            background-color: #008fcc;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+
+            .form-container {
+                padding: 15px 20px;
+            }
+
+            .form-container h2 {
+                font-size: 1.3rem;
+            }
+
+            .form-group label {
+                font-size: 0.8rem;
+            }
+
+            .form-group input {
+                font-size: 0.9rem;
+            }
+
+            .form-button {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Solicitação de Saque</h2>
+        <form id="saqueForm">
+            <div class="form-group">
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
+            </div>
+            <div class="form-group">
+                <label for="valor">Valor do Saque</label>
+                <input type="number" id="valor" name="valor" placeholder="Ex.: 100.00" required>
+            </div>
+            <div class="form-group">
+                <label for="conta">Chave pix</label>
+                <input type="text" id="conta" name="conta" placeholder="Chave Pix" required>
+            </div>
+            <button type="submit" class="form-button">Enviar solicitação</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('saqueForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita o envio padrão do formulário
+
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const valor = document.getElementById('valor').value;
+            const conta = document.getElementById('conta').value;
+
+            // Gerar mensagem para o WhatsApp
+            const mensagem = `Olá, Quero solicitar meu saque:%0A%0ANome: ${nome}%0AE-mail: ${email}%0AValor: R$${valor}%0AConta: ${conta}`;
+            const telefone = "5562982325551"; // Substitua pelo seu número com o código do país
+
+            // Abrir o WhatsApp com os dados
+            window.open(`https://wa.me/${telefone}?text=${mensagem}`, '_blank');
+
+            // Limpar o formulário
+            document.getElementById('saqueForm').reset();
+        });
+    </script>
+</body>
+</html>
